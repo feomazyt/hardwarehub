@@ -1,12 +1,14 @@
-"use client";
-
-import { ThemeToggle } from "@/components/theme-toggle";
 import Link from "next/link";
 
-export function Header() {
+import { LogoutButton } from "@/components/auth/LogoutButton";
+import { getCurrentUserFromCookies } from "@/lib/auth/get-current-user";
+import { Button } from "../ui/button";
+
+export async function Header() {
+  const user = await getCurrentUserFromCookies();
+
   return (
-    <header className="fixed top-0 w-full z-50">
-      {/* <ThemeToggle /> */}
+    <header className="fixed top-0 w-full z-50 bg-background">
       <div className="flex justify-between items-center px-8 py-4 ">
         <Link
           href="/"
@@ -17,7 +19,7 @@ export function Header() {
         <div className="flex items-center space-x-8">
           <Link
             className="font-display tracking-tight text-muted hover:text-primary transition-colors"
-            href=""
+            href="/products"
           >
             Katalog
           </Link>
@@ -40,13 +42,29 @@ export function Header() {
             Kontakt
           </Link>
         </div>
-        <div className="flex items-center">
-          <button>
+        <div className="flex items-center gap-1">
+          <Button variant="ghost">
             <span className="material-symbols-outlined">shopping_cart</span>
-          </button>
-          <button>
-            <span className="material-symbols-outlined">person</span>
-          </button>
+          </Button>
+          {user ? (
+            <>
+              <span className="px-2 text-xs text-on-surface-variant">
+                {user.name || user.email}
+              </span>
+              <LogoutButton />
+            </>
+          ) : (
+            <>
+              <Button variant="ghost" asChild>
+                <Link href="/auth/login">
+                  <span className="material-symbols-outlined">person</span>
+                </Link>
+              </Button>
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/auth/register">Konto</Link>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

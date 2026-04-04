@@ -100,3 +100,4 @@ Traditional shadows are too "dirty" for this aesthetic. We use light and tone to
 - **DON'T** use 100% white (#ffffff) for large blocks of text. Use `on_surface_variant` (#adaaaa) for secondary descriptions to reduce eye strain in this dark UI.
 - **DON'T** use standard 90-degree corners. Stick strictly to the **Roundedness Scale** (primarily `md` and `lg`) to maintain the "sleek hardware" feel.
 - **DON'T** use generic "drop shadows." If an element needs to pop, increase its `surface_container` tier.
+

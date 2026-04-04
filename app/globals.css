@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import "../node_modules/tw-animate-css/dist/tw-animate.css";
+@import "../node_modules/shadcn/dist/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -232,6 +232,17 @@ body {
   color: var(--on-surface);
 }
 
+/* Hide scrollbar; scrolling (wheel, touch, keys) still works */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   min-height: 100vh;
   font-family: var(--font-inter), sans-serif;
@@ -242,6 +253,10 @@ body {
    5) Utility classes (design rules)
    ========================= */
 /* No-Line rule: sekcje warstwą tła, nie borderem */
+
+.headline-font {
+  font-family: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+}
 
 .section-surface {
   background: var(--surface);

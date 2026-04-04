@@ -1,0 +1,21 @@
+/* app/page.module.css */
+.page {
+  /* opcjonalnie wrapper strony */
+}
+
+.page :global(.material-symbols-outlined) {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.heroGradient {
+  background: radial-gradient(
+    circle at 70% 30%,
+    rgba(0, 229, 255, 0.15) 0%,
+    rgba(14, 14, 14, 0) 60%
+  );
+}
+
+.glassCard {
+  backdrop-filter: blur(24px);
+  background: rgba(38, 38, 38, 0.6);
+}

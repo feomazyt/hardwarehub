@@ -6,7 +6,12 @@ FROM base AS deps
 WORKDIR /app
 RUN npm install -g pnpm
 COPY package.json pnpm-lock.yaml ./
+COPY prisma ./prisma
+COPY prisma.config.ts ./
+# prisma.config ładuje DATABASE_URL; przy generate nie jest potrzebne prawdziwe połączenie
+ENV DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres?schema=public"
 RUN pnpm install --frozen-lockfile
+RUN pnpm exec prisma generate
 
 # Development stage – use this for docker-compose dev
 FROM base AS dev
